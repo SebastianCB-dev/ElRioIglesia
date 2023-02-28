@@ -53,35 +53,3 @@
     }
   }
 }
-
-.circle {
-  position: fixed;
-  width: 200px;
-  height: 200px;
-  background-color: #3bbdc4;
-  -webkit-border-radius: 200px;
-  -moz-border-radius: 200px;
-  -ms-border-radius: 200px;
-  -o-border-radius: 200px;
-  border-radius: 200px;
-}
-
-.circle1 {
-  top: -80px;
-  left: -80px;
-}
-
-.circle2 {
-  top: -80px;
-  right: -80px;
-}
-
-.circle3 {
-  bottom: -80px;
-  left: -80px;
-}
-
-.circle4 {
-  bottom: -80px;
-  right: -80px;
-}
