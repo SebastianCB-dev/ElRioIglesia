@@ -1,0 +1,19 @@
+#login-ninos {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    font-family: 'Neue-Bold';
+    font-size: 45px;
+    margin-bottom: 20px;
+  }
+  form {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+  }
+}

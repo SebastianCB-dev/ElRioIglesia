@@ -1,1 +1,74 @@
-<p>register works!</p>
+<section id="register-ninos">
+  <h3>Registro</h3>
+  <form [formGroup]="registerForm"
+        autocomplete="off"
+        (ngSubmit)="register()">
+        <h2>El Río Iglesia.</h2>
+        <hr>
+        <img src="../../../../assets/imgs/ELRIOC.png">
+        <p>Solo te debes registrar una vez.</p>
+    <!-- Correo del acudiente -->
+    <input id="email_register" 
+           class="input_email" 
+           type="text" 
+           formControlName="email" 
+           maxlength="50"
+           required>
+    <label class="label_email" 
+           for="email_register">Correo del acudiente*</label>
+    <span *ngIf="isValidControl('email')" 
+          class="error">El correo del acudiente es requerido.</span>
+    <!-- Documento de identidad -->
+    <input id="documento_register" 
+           class="input_documento" 
+           type="number" 
+           formControlName="documento"
+           required>
+    <label class="label_documento" 
+           for="documento_register">Documento de identidad*</label>
+    <span *ngIf="isValidControl('documento')" 
+          class="error">El documento de identidad es requerido.</span>
+    <!-- Nombres y apellidos niño -->
+    <input id="fullname_nino_register" 
+           class="input_fullname_nino" 
+           type="text" 
+           formControlName="fullname_nino"
+           required>
+    <label class="label_fullname_nino" 
+           for="fullname_nino_register">Nombres y apellidos niño*</label>
+    <span *ngIf="isValidControl('fullname_nino')" 
+          class="error">Los nombres y apellidos son requeridos.</span>
+    <!-- Nombres y apellidos niño -->
+    <input id="fullname_nino_register" 
+           class="input_fullname_nino" 
+           type="text" 
+           formControlName="fullname_nino"
+           required>
+    <label class="label_fullname_nino" 
+           for="fullname_nino_register">Nombres y apellidos niño*</label>
+    <span *ngIf="isValidControl('fullname_nino')" 
+          class="error">Los nombres y apellidos son requeridos.</span>
+    <!-- Nombres y apellidos acudiente -->
+    <input id="fullname_acudiente_register" 
+           class="input_fullname_acudiente" 
+           type="text" 
+           formControlName="fullname_acudiente" 
+           required>
+    <label class="label_fullname_acudiente" 
+           for="fullname_acudiente_register">Nombres y apellidos acudiente*</label>
+    <span *ngIf="isValidControl('fullname_acudiente')" 
+           class="error">Los nombres y apellidos del acudiente son requeridos.</span>
+    <!-- Fecha de nacimiento -->
+    <input id="dob_register" 
+           class="input_dob" 
+           type="date" 
+           formControlName="dob" 
+           required>
+    <label class="label_dob" 
+           for="dob_register">Fecha de nacimiento del niño*</label>
+    <span *ngIf="isValidControl('dob')" 
+           class="error">Los nombres y apellidos del acudiente son requeridos.</span>
+    <button type="submit">Registrar</button>
+  </form>
+
+</section>
