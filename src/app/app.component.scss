@@ -1,5 +1,17 @@
 button {
+  width: 230px;
+  overflow: hidden;
   position: fixed;
+  background-color: transparent;
+  outline: none;
+  border: transparent;
+  top: 20px;
+  left: 50%;
+  margin-left: -100px;
+  cursor: pointer;
+  img {
+    width: 230px;
+  }
 }
 
 .circle {
