@@ -8,6 +8,7 @@
   align-items: center;
   padding-top: 80px;
   padding-bottom: 80px;
+
   h3 {
     font-family: 'Neue-Bold';
     font-size: 45px;
@@ -89,7 +90,7 @@
     .input_documento:focus,
     .input_fullname_nino:focus,
     .input_fullname_acudiente:focus,
-        .input_dob:focus {
+    .input_dob:focus {
       border-width: 2px;
       border-style: solid;
       border-color: #187e84;
@@ -100,7 +101,7 @@
     .label_documento,
     .label_fullname_nino,
     .label_fullname_acudiente,
-        .label_dob {
+    .label_dob {
       position: absolute;
       color: #000;
       font-size: 18px;
@@ -118,11 +119,16 @@
     .input_email:valid+.label_email,
     .input_documento:valid+.label_documento,
     .input_fullname_nino:valid+.label_fullname_nino,
-    .input_fullname_acudiente:valid+.label_fullname_acudiente,
-    .input_dob:valid+.label_dob {
+    .input_fullname_acudiente:valid+.label_fullname_acudiente {
       margin-top: -88px;
       font-size: 14px;
       color: #187e84;
+    }
+
+    .label_dob {
+      color: #000;
+      margin-top: -88px;
+      font-size: 14px;
     }
 
     .input_email:focus+.label_email,
@@ -134,6 +140,7 @@
       font-size: 14px;
       color: #187e84;
     }
+
     button {
       display: block;
       width: 200px;
@@ -156,9 +163,11 @@
       cursor: pointer;
       margin-bottom: 40px;
     }
+
     button:hover {
       color: #3bbdc4
     }
+
     .error {
       position: absolute;
       color: #E83B07;
@@ -166,6 +175,26 @@
       margin-left: 25px;
       font-size: 14px;
       font-family: 'Neue-Mediu', sans-serif;
+    }
+
+    .checkbox {
+      color: #000;
+      font-family: 'Neue-Mediu', sans-serif;
+      margin-bottom: 35px;
+      margin-left: 25px;
+      input {
+        margin-right: 10px;
+      }
+
+      a {
+        color: #1c1c1c;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      a:hover {
+        color: #000;
+      }
     }
   }
 }
