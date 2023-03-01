@@ -20,6 +20,8 @@ specifiers:
   karma-coverage: ~2.2.0
   karma-jasmine: ~5.1.0
   karma-jasmine-html-reporter: ~2.0.0
+  primeicons: ^6.0.1
+  primeng: ^15.2.0
   rxjs: ~7.8.0
   tslib: ^2.3.0
   typescript: ~4.9.4
@@ -35,6 +37,8 @@ dependencies:
   '@angular/platform-browser-dynamic': 15.2.0_q3vtycdixm4mw4ocqkr6ifs2ty
   '@angular/router': 15.2.0_za6jdduxquwsf5arpf6dzdovcm
   firebase: 9.17.1
+  primeicons: 6.0.1
+  primeng: 15.2.0_de7g4wqtfsrtndcbdfwcldhtpi
   rxjs: 7.8.0
   tslib: 2.5.0
   zone.js: 0.12.0
@@ -5945,6 +5949,29 @@ packages:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
     dev: true
+
+  /primeicons/6.0.1:
+    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+    dev: false
+
+  /primeng/15.2.0_de7g4wqtfsrtndcbdfwcldhtpi:
+    resolution: {integrity: sha512-CLcB4RYiI4PcQ8nwov01L5CQHbhl7n1OufA2OKIq9+C4sBEv9sLsnEN2/Cah4m1jtrRkNbsac8JJE7LdPxecaQ==}
+    peerDependencies:
+      '@angular/common': ^15.1.0
+      '@angular/core': ^15.1.0
+      '@angular/forms': ^15.1.0
+      primeicons: ^6.0.1
+      rxjs: ^6.0.0 || ^7.5.0
+      zone.js: ^0.10.2 || ^0.11.0 || ^0.12.0
+    dependencies:
+      '@angular/common': 15.2.0_6rl5h76dm6n755x2qkojsrrx44
+      '@angular/core': 15.2.0_rxjs@7.8.0+zone.js@0.12.0
+      '@angular/forms': 15.2.0_za6jdduxquwsf5arpf6dzdovcm
+      primeicons: 6.0.1
+      rxjs: 7.8.0
+      tslib: 2.5.0
+      zone.js: 0.12.0
+    dev: false
 
   /proc-log/3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
