@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Analytics, getAnalytics } from "firebase/analytics";
-import { Firestore, getFirestore } from 'firebase/firestore';
+import { addDoc, 
+         collection, 
+         Firestore, 
+         getFirestore } from 'firebase/firestore';
+import { UserNino } from '../interface/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,4 +36,12 @@ export class FirebaseService {
     this.db = getFirestore();
     this.analytics = getAnalytics(this.app);
   }
+
+  async createUser(user: UserNino, role: string) {
+    await addDoc(collection(this.db, 'users'), {
+     user,
+     role,
+    });
+  }
+
 }

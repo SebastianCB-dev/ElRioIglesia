@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-register',
@@ -9,29 +10,41 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent {
 
   public registerForm: FormGroup = this.fb.group({
-    "email": ['', [Validators.required, Validators.email]],
-    "documento": ['', [Validators.required, Validators.min(1)]],
-    "fullname_nino": ['', [Validators.required]],
-    "fullname_acudiente": ['', [Validators.required]],
-    "dob": ['', [Validators.required]],
-    "terms": [false, [Validators.requiredTrue]]
+    "email": ['test1@gmail.com', [Validators.required, Validators.email]],
+    "documento": ['1', [Validators.required, Validators.min(1)]],
+    "fullname_nino": ['test1', [Validators.required]],
+    "fullname_acudiente": ['test1', [Validators.required]],
+    "dob": ['2001-11-11', [Validators.required]],
+    "terms": [true, [Validators.requiredTrue]]
   },
   {
     validators: this.checkDate()
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              private fbSrv: FirebaseService) {}
 
   isValidControl(control: string) {
     return this.registerForm.get(control)?.touched &&
            this.registerForm.get(control)?.invalid;
   }
 
-  register() {    
+  async register() {    
     if(this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
-    console.log('Registering');
+    // TODO: Validate if user exists with document
+
+    await this.fbSrv.createUser({
+      ...this.registerForm.value,
+      points: 0
+    }, 'nino').then(() => {
+      console.log('Usuario creado');
+    }).catch((err) => {
+      console.log('Error:', err);
+    }).finally(() => {
+      console.log('Finalizado');
+    });
   }
 
   getDateToday() {
