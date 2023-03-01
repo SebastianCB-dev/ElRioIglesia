@@ -33,8 +33,7 @@ export class RegisterComponent {
            this.registerForm.get(control)?.invalid;
   }
 
-  async register() {    
-    this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
+  async register() {        
     if(this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
@@ -42,18 +41,27 @@ export class RegisterComponent {
     const user = await this.fbSrv.getUser('1');
     if(user) {
       // TODO: Show error message
-      console.log('Ya existe');
+      this.messageService.add({ 
+         severity: 'error',
+         summary: 'Error en el registro', 
+         detail: 'Ya existe un niño(a) con esa identificación.' });
       return;
     }
     await this.fbSrv.createUser({
       ...this.registerForm.value,
       points: 0
     }, 'nino').then(() => {
-      console.log('Usuario creado');
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Registro completado',
+        detail: 'Su usuario fue creado exitosamente.'
+      });
     }).catch((err) => {
-      console.log('Error:', err);
-    }).finally(() => {
-      console.log('Finalizado');
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error en el registro',
+        detail: 'Contacte al administrador.'
+      });
     });
   }
 
