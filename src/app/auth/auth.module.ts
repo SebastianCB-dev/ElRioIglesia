@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthHomeComponent } from './auth-home.component';
 import { LoginComponent } from './ninos/login/login.component';
 import { RegisterComponent } from './ninos/register/register.component';
+import { PrimengModule } from '../primeng/primeng.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RegisterComponent } from './ninos/register/register.component';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrimengModule
   ]
 })
 export class AuthModule { }

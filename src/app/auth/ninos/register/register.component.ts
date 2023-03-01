@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
@@ -22,7 +23,10 @@ export class RegisterComponent {
   });
 
   constructor(private fb: FormBuilder,
-              private fbSrv: FirebaseService) {}
+              private fbSrv: FirebaseService,
+              private messageService: MessageService) {
+    
+              }
 
   isValidControl(control: string) {
     return this.registerForm.get(control)?.touched &&
@@ -30,6 +34,7 @@ export class RegisterComponent {
   }
 
   async register() {    
+    this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
     if(this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
