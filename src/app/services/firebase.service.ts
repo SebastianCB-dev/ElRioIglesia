@@ -4,8 +4,11 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { addDoc, 
          collection, 
+         doc, 
          Firestore, 
-         getFirestore } from 'firebase/firestore';
+         getDoc, 
+         getFirestore, 
+         setDoc} from 'firebase/firestore';
 import { UserNino } from '../interface/user';
 @Injectable({
   providedIn: 'root'
@@ -37,11 +40,17 @@ export class FirebaseService {
     this.analytics = getAnalytics(this.app);
   }
 
-  async createUser(user: UserNino, role: string) {
-    await addDoc(collection(this.db, 'users'), {
-     user,
-     role,
-    });
+  createUser(user: UserNino, role: string) {
+    return setDoc(doc(this.db, "users", user.documento.toString()), {
+      user,
+      role,
+    });    
+  }
+
+  async getUser(documento: string) {
+    const docRef = doc(this.db, "users", documento);
+    const docSnap = await getDoc(docRef);
+    return docSnap.data();
   }
 
 }

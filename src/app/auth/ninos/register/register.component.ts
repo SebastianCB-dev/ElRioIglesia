@@ -34,7 +34,12 @@ export class RegisterComponent {
       return this.registerForm.markAllAsTouched();
     }
     // TODO: Validate if user exists with document
-
+    const user = await this.fbSrv.getUser('1');
+    if(user) {
+      // TODO: Show error message
+      console.log('Ya existe');
+      return;
+    }
     await this.fbSrv.createUser({
       ...this.registerForm.value,
       points: 0
