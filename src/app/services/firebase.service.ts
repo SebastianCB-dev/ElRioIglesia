@@ -1,9 +1,35 @@
 import { Injectable } from '@angular/core';
 
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Analytics, getAnalytics } from "firebase/analytics";
+import { Firestore, getFirestore } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
+  public firebaseConfig = {};
+  public app!: FirebaseApp;
+  public db!: Firestore;
+  public analytics!: Analytics;
 
-  constructor() { }
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    this.firebaseConfig = {
+      apiKey: "AIzaSyBLKRclmROuAyaYgj0ECBrSMVI1cCbQSMw",
+      authDomain: "elrio-3b9a0.firebaseapp.com",
+      projectId: "elrio-3b9a0",
+      storageBucket: "elrio-3b9a0.appspot.com",
+      messagingSenderId: "203957913792",
+      appId: "1:203957913792:web:40bc99148b49a328bfc525",
+      measurementId: "G-T8JK1DEXJD"
+    };
+
+    // Initialize Firebase
+    this.app = initializeApp(this.firebaseConfig);
+    this.db = getFirestore();
+    this.analytics = getAnalytics(this.app);
+  }
 }
