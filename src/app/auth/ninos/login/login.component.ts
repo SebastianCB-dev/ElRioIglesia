@@ -46,7 +46,7 @@ export class LoginComponent {
         return;
       }
       // Validate if id is correct
-      if (user['user']['id'] !== this.loginForm.get('id')?.value) {
+      if (user['id'] !== this.loginForm.get('id')?.value && user['role'] !== 'nino') {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -55,7 +55,7 @@ export class LoginComponent {
         return;
       }
 
-      localStorage.setItem('token-rio', JSON.stringify(user['user']['id']));
+      localStorage.setItem('token-rio', JSON.stringify(user['id']));
     // TODO: Redirect to dashboard
     }
     catch (error) {
