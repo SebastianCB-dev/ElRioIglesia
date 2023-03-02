@@ -1,0 +1,32 @@
+.loading {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.734);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  img {
+    position: relative;
+    left: -72px;
+    width: 45px;
+  }
+}
+
+:host ::ng-deep .geek-spinner .p-progress-spinner-circle {
+  animation: geek 4s ease-in-out infinite;
+}
+
+@keyframes geek {
+
+  100%,
+  0% {
+    stroke: #fff;
+  }
+  50% {
+    stroke: #3bbdc4;
+  }
+}

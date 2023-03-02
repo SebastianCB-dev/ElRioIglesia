@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   exports: [
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule
   ],
   providers: [
     MessageService

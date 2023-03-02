@@ -8,6 +8,7 @@ import { AuthHomeComponent } from './auth-home.component';
 import { LoginComponent } from './ninos/login/login.component';
 import { RegisterComponent } from './ninos/register/register.component';
 import { PrimengModule } from '../primeng/primeng.module';
+import { ComponentsModule } from '../components/components.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PrimengModule } from '../primeng/primeng.module';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    PrimengModule
+    PrimengModule,
+    ComponentsModule
   ]
 })
 export class AuthModule { }
