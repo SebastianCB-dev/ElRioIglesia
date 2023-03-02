@@ -17,7 +17,7 @@ export class RegisterComponent {
   public registerForm: FormGroup = this.fb.group({
     "email": ['test1@gmail.com', [Validators.required, Validators.email]],
     "documento": ['1', [Validators.required, Validators.min(1)]],
-    "fullname_nino": ['test1', [Validators.required]],
+    "fullname": ['test1', [Validators.required]],
     "fullname_acudiente": ['test1', [Validators.required]],
     "dob": ['1111-11-11', [Validators.required]],
     "terms": [true, [Validators.requiredTrue]]
@@ -55,10 +55,12 @@ export class RegisterComponent {
       }
       const id = await this.fbSrv.getMaxId();
       this.registerForm.value.id = id;
+      this.registerForm.value.points = 0;
+      const { terms, ...data} = this.registerForm.value;
+      data.dob = new Date(data.dob);
       // Create user
       await this.fbSrv.createUser({
-        ...this.registerForm.value,
-        points: 0
+        ...data
       }, 'nino')
         .then(() => {
           this.messageService.add({

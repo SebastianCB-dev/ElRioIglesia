@@ -32,11 +32,11 @@
     <input id="fullname_nino_register" 
            class="input_fullname_nino" 
            type="text" 
-           formControlName="fullname_nino" 
+           formControlName="fullname" 
            required>
     <label class="label_fullname_nino" 
            for="fullname_nino_register">Nombres y apellidos niño(a)*</label>
-    <span *ngIf="isValidControl('fullname_nino')" 
+    <span *ngIf="isValidControl('fullname')" 
           class="error">Los nombres y apellidos son requeridos.</span>
     <!-- Nombres y apellidos acudiente -->
     <input id="fullname_acudiente_register" 

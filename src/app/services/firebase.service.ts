@@ -12,7 +12,7 @@ import { addDoc,
          query, 
          setDoc,
          where} from 'firebase/firestore';
-import { UserNino } from '../interface/user';
+import { User } from '../interface/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,11 +44,9 @@ export class FirebaseService {
     this.analytics = getAnalytics(this.app);
   }
 
-  createUser(user: UserNino, role: string) {
-    return setDoc(doc(this.db, "users", user.documento.toString()), {
-      user,
-      role,
-    });    
+  createUser(user: User, role: string) {
+    user.role = role;
+    return setDoc(doc(this.db, "users", user.documento.toString()), user);    
   }
 
   async getUser(documento: string) {
@@ -67,7 +65,7 @@ export class FirebaseService {
     const querySnapshot = await getDocs(querySearch);
     const ids: number[] = querySnapshot.docs.map((doc) => {
       const data = doc.data();
-      return data['user']['id'];
+      return data['id'];
     })
     return Math.max(...ids) + 1;
   }

@@ -1,9 +1,11 @@
-export interface UserNino {
+export interface User {
 
-  email_acudiente: string;
-  documento: number;
-  fullname_nino: string;
-  fullname_acudiente: string;
   dob: string;
-  points: number;
+  documento: number;
+  email: string;
+  fullname: string;
+  role: string;
+  fullname_acudiente?: string;
+  points?: number;
+  
 }
