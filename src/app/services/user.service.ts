@@ -9,7 +9,9 @@ export class UserService {
 
   private _user: User | undefined;
 
-  constructor(private fbSrv: FirebaseService) { }
+  constructor(private fbSrv: FirebaseService) {
+    this.loadUser();
+  }
 
   setUser(user: User) {
     this._user = user;
