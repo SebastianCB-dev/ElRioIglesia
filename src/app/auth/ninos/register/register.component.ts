@@ -11,12 +11,12 @@ import { FirebaseService } from '../../../services/firebase.service';
 export class RegisterComponent {
 
   public registerForm: FormGroup = this.fb.group({
-    "email": ['test1@gmail.com', [Validators.required, Validators.email]],
-    "documento": ['1', [Validators.required, Validators.min(1)]],
-    "fullname_nino": ['test1', [Validators.required]],
-    "fullname_acudiente": ['test1', [Validators.required]],
-    "dob": ['2001-11-11', [Validators.required]],
-    "terms": [true, [Validators.requiredTrue]]
+    "email": ['', [Validators.required, Validators.email]],
+    "documento": ['', [Validators.required, Validators.min(1)]],
+    "fullname_nino": ['', [Validators.required]],
+    "fullname_acudiente": ['', [Validators.required]],
+    "dob": ['', [Validators.required]],
+    "terms": [false, [Validators.requiredTrue]]
   },
   {
     validators: this.checkDate()
@@ -37,31 +37,37 @@ export class RegisterComponent {
     if(this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
-    // TODO: Validate if user exists with document
-    const user = await this.fbSrv.getUser('1');
-    if(user) {
-      // TODO: Show error message
+    const id = this.registerForm.get('documento')?.value;
+    const user = await this.fbSrv.getUser(id);
+    // Validate if user exists
+    if(user) {      
       this.messageService.add({ 
          severity: 'error',
          summary: 'Error en el registro', 
          detail: 'Ya existe un niño(a) con esa identificación.' });
       return;
     }
+    // Create user
     await this.fbSrv.createUser({
       ...this.registerForm.value,
       points: 0
-    }, 'nino').then(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Registro completado',
-        detail: 'Su usuario fue creado exitosamente.'
-      });
-    }).catch((err) => {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error en el registro',
-        detail: 'Contacte al administrador.'
-      });
+    }, 'nino')
+      .then(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Registro completado',
+          detail: 'Su usuario fue creado exitosamente.'
+        });
+        // Show ID Sweet Alert
+        
+        // Reset form
+        this.registerForm.reset();
+      }).catch((err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error en el registro',
+          detail: 'Contacte al administrador.'
+        });
     });
   }
 

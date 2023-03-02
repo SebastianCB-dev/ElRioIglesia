@@ -1,18 +1,18 @@
 <section id="register-ninos">
   <h3>Registro</h3>
-  <form [formGroup]="registerForm"
-        autocomplete="off"
+  <form [formGroup]="registerForm" 
+        autocomplete="off" 
         (ngSubmit)="register()">
-        <h2>El Río Iglesia.</h2>
-        <hr>
-        <img src="../../../../assets/imgs/ELRIOC.png">
-        <p>Solo te debes registrar una vez.</p>
+    <h2>El Río Iglesia.</h2>
+    <hr>
+    <img src="../../../../assets/imgs/ELRIOC.png">
+    <p>Solo te debes registrar una vez.</p>
     <!-- Correo del acudiente -->
     <input id="email_register" 
            class="input_email" 
            type="text" 
            formControlName="email" 
-           maxlength="50"
+           maxlength="50" 
            required>
     <label class="label_email" 
            for="email_register">Correo del acudiente*</label>
@@ -22,7 +22,7 @@
     <input id="documento_register" 
            class="input_documento" 
            type="number" 
-           formControlName="documento"
+           formControlName="documento" 
            required>
     <label class="label_documento" 
            for="documento_register">Documento de identidad niño(a)*</label>
@@ -32,7 +32,7 @@
     <input id="fullname_nino_register" 
            class="input_fullname_nino" 
            type="text" 
-           formControlName="fullname_nino"
+           formControlName="fullname_nino" 
            required>
     <label class="label_fullname_nino" 
            for="fullname_nino_register">Nombres y apellidos niño(a)*</label>
@@ -41,32 +41,35 @@
     <!-- Nombres y apellidos acudiente -->
     <input id="fullname_acudiente_register" 
            class="input_fullname_acudiente" 
-           type="text" 
+           type="text"
            formControlName="fullname_acudiente" 
            required>
     <label class="label_fullname_acudiente" 
-           for="fullname_acudiente_register">Nombres y apellidos acudiente*</label>
+           for="fullname_acudiente_register">Nombres y apellidos
+      acudiente*</label>
     <span *ngIf="isValidControl('fullname_acudiente')" 
-           class="error">Los nombres y apellidos del acudiente son requeridos.</span>
-    <!-- Fecha de nacimiento -->    
+          class="error">Los nombres y apellidos del acudiente son requeridos.</span>
+    <!-- Fecha de nacimiento -->
     <input id="dob_register" 
            class="input_dob" 
            type="date" 
-           formControlName="dob"
+           formControlName="dob" 
            [max]="getDateToday()"
-           value="2013/06/01"
+           value="2013/06/01" 
            required>
     <label class="label_dob" 
            for="dob_register">Fecha de nacimiento del niño(a)*</label>
     <span *ngIf="isValidControl('dob')" 
-           class="error">La fecha de nacimiento nos es valida.</span>
-     <!-- Terms -->
+          class="error">La fecha de nacimiento nos es valida.</span>
+    <!-- Terms -->
     <div class="checkbox">
       <label>
         <input type="checkbox" 
-               formControlName="terms">Aceptar politica de tratamiento de datos.</label>
+               formControlName="terms">
+        Aceptar politica de tratamiento de datos.
+      </label>
     </div>
-    <span *ngIf="isValidControl('terms')"
+    <span *ngIf="isValidControl('terms')" 
           class="error">Debes aceptar la politica.</span>
     <button type="submit">Registrar</button>
     <hr>
@@ -76,6 +79,6 @@
 </section>
 
 <p-toast closable="true" 
-         sticky="true"
-         life="5000"
+         sticky="true" 
+         life="5000" 
          position="bottom-center"></p-toast>
