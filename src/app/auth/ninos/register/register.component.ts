@@ -27,9 +27,7 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder,
               private fbSrv: FirebaseService,
-              private messageService: MessageService) {
-    
-              }
+              private messageService: MessageService) {}
 
   isValidControl(control: string) {
     return this.registerForm.get(control)?.touched &&
@@ -38,7 +36,8 @@ export class RegisterComponent {
 
   async register() {        
     if(this.registerForm.invalid) {
-      return this.registerForm.markAllAsTouched();
+      this.registerForm.markAllAsTouched();
+      return;
     }
     const documento = this.registerForm.get('documento')?.value.toString();
     const user = await this.fbSrv.getUser(documento);

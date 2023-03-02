@@ -1,7 +1,35 @@
 <section id="login-ninos">
-  <h3>Login</h3>
-  <form>
-    
+  <h3>Acceso</h3>
+  <form [formGroup]="loginForm" 
+        autocomplete="off" 
+        (ngSubmit)="login()">
+    <h2>El Río Iglesia.</h2>
+    <hr>
+    <img src="../../../../assets/imgs/ELRIOC.png">
+
+    <!-- Documento de identidad -->
+    <input id="documento_login" 
+           class="input_documento" 
+           type="number" 
+           formControlName="documento" 
+           required>
+    <label class="label_documento" 
+           for="documento_login">Documento de identidad niño(a)*</label>
+    <span *ngIf="isValidControl('documento')" 
+          class="error">El documento de identidad es requerido.</span>
+    <!-- ID -->
+    <input id="id_login" 
+           class="input_id" 
+           type="number" 
+           formControlName="id" 
+           required>
+    <label class="label_id" 
+           for="id_register">ID del niño(a)*</label>
+    <span *ngIf="isValidControl('id')" 
+          class="error">El ID es requerido.</span>
+    <button type="submit">Ingresar</button>
+    <hr>
+    <h6>¿No tienes una cuenta? <a routerLink="/auth/ninos/register">Registrar</a></h6>
   </form>
 
 </section>
