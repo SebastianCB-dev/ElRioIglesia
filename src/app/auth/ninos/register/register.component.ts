@@ -18,7 +18,7 @@ export class RegisterComponent {
     "documento": ['1', [Validators.required, Validators.min(1)]],
     "fullname_nino": ['test1', [Validators.required]],
     "fullname_acudiente": ['test1', [Validators.required]],
-    "dob": ['11-11-1111', [Validators.required]],
+    "dob": ['1111-11-11', [Validators.required]],
     "terms": [true, [Validators.requiredTrue]]
   },
   {
