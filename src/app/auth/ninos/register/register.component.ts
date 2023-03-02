@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import Swal from 'sweetalert2';
+
 import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../../services/firebase.service';
 
@@ -11,12 +14,12 @@ import { FirebaseService } from '../../../services/firebase.service';
 export class RegisterComponent {
 
   public registerForm: FormGroup = this.fb.group({
-    "email": ['', [Validators.required, Validators.email]],
-    "documento": ['', [Validators.required, Validators.min(1)]],
-    "fullname_nino": ['', [Validators.required]],
-    "fullname_acudiente": ['', [Validators.required]],
-    "dob": ['', [Validators.required]],
-    "terms": [false, [Validators.requiredTrue]]
+    "email": ['test1@gmail.com', [Validators.required, Validators.email]],
+    "documento": ['1', [Validators.required, Validators.min(1)]],
+    "fullname_nino": ['test1', [Validators.required]],
+    "fullname_acudiente": ['test1', [Validators.required]],
+    "dob": ['11-11-1111', [Validators.required]],
+    "terms": [true, [Validators.requiredTrue]]
   },
   {
     validators: this.checkDate()
@@ -38,6 +41,7 @@ export class RegisterComponent {
       return this.registerForm.markAllAsTouched();
     }
     const id = this.registerForm.get('documento')?.value;
+    console.log(id);
     const user = await this.fbSrv.getUser(id);
     // Validate if user exists
     if(user) {      
@@ -59,7 +63,11 @@ export class RegisterComponent {
           detail: 'Su usuario fue creado exitosamente.'
         });
         // Show ID Sweet Alert
-        
+        Swal.fire(
+          'Registro satisfactorio',
+          `El id de su niño(a) es: ${'PENDING'} <br> Por favor guardelo para futuras consultas.`,
+          'info'
+        )
         // Reset form
         this.registerForm.reset();
       }).catch((err) => {

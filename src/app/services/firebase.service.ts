@@ -48,9 +48,13 @@ export class FirebaseService {
   }
 
   async getUser(documento: string) {
-    const docRef = doc(this.db, "users", documento);
-    const docSnap = await getDoc(docRef);
-    return docSnap.data();
+    try {
+      const docRef = doc(this.db, "users", documento);
+      const docSnap = await getDoc(docRef);
+      return docSnap.data();
+    }
+    catch(err) {
+      return null;
+    }
   }
-
 }
