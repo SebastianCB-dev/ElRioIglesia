@@ -40,9 +40,8 @@ export class RegisterComponent {
     if(this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
-    const id = this.registerForm.get('documento')?.value;
-    console.log(id);
-    const user = await this.fbSrv.getUser(id);
+    const documento = this.registerForm.get('documento')?.value.toString();
+    const user = await this.fbSrv.getUser(documento);
     // Validate if user exists
     if(user) {      
       this.messageService.add({ 
@@ -51,6 +50,8 @@ export class RegisterComponent {
          detail: 'Ya existe un niño(a) con esa identificación.' });
       return;
     }
+    const id = await this.fbSrv.getMaxId();
+    this.registerForm.value.id = id;
     // Create user
     await this.fbSrv.createUser({
       ...this.registerForm.value,
@@ -65,7 +66,7 @@ export class RegisterComponent {
         // Show ID Sweet Alert
         Swal.fire(
           'Registro satisfactorio',
-          `El id de su niño(a) es: ${'PENDING'} <br> Por favor guardelo para futuras consultas.`,
+          `El id de su niño(a) es: <strong>${id}</strong> <br> Por favor guardelo para futuras consultas.`,
           'info'
         )
         // Reset form
