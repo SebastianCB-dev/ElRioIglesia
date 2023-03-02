@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
@@ -15,7 +17,7 @@ export class LoginComponent {
   });
 
   constructor(private fb: FormBuilder,
-              private fbSrv: FirebaseService
+              private fbSrv: FirebaseService,
               private messageService: MessageService) {}
 
   isValidControl(control: string) {
@@ -29,10 +31,26 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-    const documento = this.loginForm.get('documento')?.value;
+    const documento = this.loginForm.get('documento')?.value.toString();
     const user = await this.fbSrv.getUser(documento);
+    // Validate if user exists
     if(!user) {
-
+      this.messageService.add({
+        severity:'error',
+        summary:'Error',
+        detail:'Usuario y/o id incorrectos.'});
+      return;
     }
+    // Validate if id is correct
+    if(user['user']['id'] !== this.loginForm.get('id')?.value) {
+      this.messageService.add({
+        severity:'error',
+        summary:'Error',
+        detail:'Usuario y/o id incorrectos.'});
+      return;
+    }
+
+    // TODO: Redirect to dashboard    
+    
   }
 }

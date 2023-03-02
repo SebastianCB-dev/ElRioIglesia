@@ -58,7 +58,6 @@ export class FirebaseService {
       return docSnap.data();
     }
     catch(err) {
-      console.log(err);
       return null;
     }
   }
