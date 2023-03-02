@@ -13,6 +13,7 @@ import { FirebaseService } from '../../../services/firebase.service';
 })
 export class RegisterComponent {
 
+  public isLoading: boolean = false;
   public registerForm: FormGroup = this.fb.group({
     "email": ['test1@gmail.com', [Validators.required, Validators.email]],
     "documento": ['1', [Validators.required, Validators.min(1)]],
@@ -39,44 +40,52 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
-    const documento = this.registerForm.get('documento')?.value.toString();
-    const user = await this.fbSrv.getUser(documento);
-    // Validate if user exists
-    if(user) {      
-      this.messageService.add({ 
-         severity: 'error',
-         summary: 'Error en el registro', 
-         detail: 'Ya existe un niño(a) con esa identificación.' });
-      return;
-    }
-    const id = await this.fbSrv.getMaxId();
-    this.registerForm.value.id = id;
-    // Create user
-    await this.fbSrv.createUser({
-      ...this.registerForm.value,
-      points: 0
-    }, 'nino')
-      .then(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Registro completado',
-          detail: 'Su usuario fue creado exitosamente.'
-        });
-        // Show ID Sweet Alert
-        Swal.fire(
-          'Registro satisfactorio',
-          `El id de su niño(a) es: <strong>${id}</strong> <br> Por favor guardelo para futuras consultas.`,
-          'info'
-        )
-        // Reset form
-        this.registerForm.reset();
-      }).catch((err) => {
+    try {
+      this.isLoading = true;
+      const documento = this.registerForm.get('documento')?.value.toString();
+      const user = await this.fbSrv.getUser(documento);
+      // Validate if user exists
+      if (user) {
         this.messageService.add({
           severity: 'error',
           summary: 'Error en el registro',
-          detail: 'Contacte al administrador.'
+          detail: 'Ya existe un niño(a) con esa identificación.'
         });
-    });
+        return;
+      }
+      const id = await this.fbSrv.getMaxId();
+      this.registerForm.value.id = id;
+      // Create user
+      await this.fbSrv.createUser({
+        ...this.registerForm.value,
+        points: 0
+      }, 'nino')
+        .then(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Registro completado',
+            detail: 'Su usuario fue creado exitosamente.'
+          });
+          // Show ID Sweet Alert
+          Swal.fire(
+            'Registro satisfactorio',
+            `El id de su niño(a) es: <strong>${id}</strong> <br> Por favor guardelo para futuras consultas.`,
+            'info'
+          )
+          // Reset form
+          this.registerForm.reset();
+        }).catch((err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error en el registro',
+            detail: 'Contacte al administrador.'
+          });
+        });
+    }
+    finally {
+      this.isLoading = false;
+    }
+    
   }
 
   getDateToday() {

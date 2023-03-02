@@ -11,6 +11,7 @@ import { FirebaseService } from '../../../services/firebase.service';
 })
 export class LoginComponent {
 
+  public isLoading: boolean = false;
   public loginForm: FormGroup = this.fb.group({
     "documento": ['', [Validators.required, Validators.min(0)]],
     "id": ['', [Validators.required, Validators.min(0)]],
@@ -31,27 +32,44 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-    const documento = this.loginForm.get('documento')?.value.toString();
-    const user = await this.fbSrv.getUser(documento);
-    // Validate if user exists
-    if(!user) {
-      this.messageService.add({
-        severity:'error',
-        summary:'Error',
-        detail:'Usuario y/o id incorrectos.'});
-      return;
-    }
-    // Validate if id is correct
-    if(user['user']['id'] !== this.loginForm.get('id')?.value) {
-      this.messageService.add({
-        severity:'error',
-        summary:'Error',
-        detail:'Usuario y/o id incorrectos.'});
-      return;
-    }
+    this.isLoading = true;
+    try {
+      const documento = this.loginForm.get('documento')?.value.toString();
+      const user = await this.fbSrv.getUser(documento);
+      // Validate if user exists
+      if (!user) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Usuario y/o id incorrectos.'
+        });
+        return;
+      }
+      // Validate if id is correct
+      if (user['user']['id'] !== this.loginForm.get('id')?.value) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Usuario y/o id incorrectos.'
+        });
+        return;
+      }
 
-    localStorage.setItem('token-rio', JSON.stringify(user['user']['id']));
+      localStorage.setItem('token-rio', JSON.stringify(user['user']['id']));
     // TODO: Redirect to dashboard
+    }
+    catch (error) {
+      console.log(error);
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Ha ocurrido un error inesperado.'
+      });
+    }
+    finally {
+      this.isLoading = false;
+    }
+    
     
   }
 }
