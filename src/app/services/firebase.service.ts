@@ -69,4 +69,14 @@ export class FirebaseService {
     })
     return Math.max(...ids) + 1;
   }
+
+  async getUserByID(id: number) {
+    const querySearch = query(collection(this.db, 'users'), where('id', '==', id));
+    const querySnapshot = await getDocs(querySearch);
+    const user = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return data;
+    })
+    return user[0];
+  }
 }
