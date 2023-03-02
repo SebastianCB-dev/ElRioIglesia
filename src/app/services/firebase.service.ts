@@ -7,8 +7,11 @@ import { addDoc,
          doc, 
          Firestore, 
          getDoc, 
+         getDocs, 
          getFirestore, 
-         setDoc} from 'firebase/firestore';
+         query, 
+         setDoc,
+         where} from 'firebase/firestore';
 import { UserNino } from '../interface/user';
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,7 @@ export class FirebaseService {
 
   constructor() {
     this.init();
+    this.getMaxId();
   }
 
   init() {
@@ -56,5 +60,15 @@ export class FirebaseService {
     catch(err) {
       return null;
     }
+  }
+
+  async getMaxId() {
+    const querySearch = query(collection(this.db, 'users'));
+    const querySnapshot = await getDocs(querySearch);
+    const ids: number[] = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+      return data['user']['id'];
+    })
+    return Math.max(...ids) + 1;
   }
 }
