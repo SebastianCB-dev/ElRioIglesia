@@ -50,7 +50,8 @@ export class LoginComponent {
       return;
     }
 
-    // TODO: Redirect to dashboard    
+    localStorage.setItem('token-rio', JSON.stringify(user['user']['id']));
+    // TODO: Redirect to dashboard
     
   }
 }
