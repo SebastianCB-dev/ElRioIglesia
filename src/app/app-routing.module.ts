@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './guards/auth.guard';
+
 import { HomePageComponent } from './home/home-page.component';
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   },
   {
     path: 'ninos',
-    loadChildren: () => import('./ninos/ninos.module').then((m) => m.NinosModule)
+    loadChildren: () => import('./ninos/ninos.module').then((m) => m.NinosModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   }
 ];
 
