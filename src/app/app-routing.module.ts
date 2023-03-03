@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
+  },
+  {
+    path: 'ninos',
+    loadChildren: () => import('./ninos/ninos.module').then((m) => m.NinosModule)
   }
 ];
 
