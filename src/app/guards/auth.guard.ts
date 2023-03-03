@@ -13,7 +13,8 @@ export class AuthGuard {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     await this.userSrv.loadUser();
-    if(!this.userSrv.getUser()) {
+    if (!this.userSrv.getUser() || 
+         this.userSrv.getUser()?.role !== 'nino') {
       await this.router.navigateByUrl('/auth');
     } 
     return true;
@@ -21,7 +22,8 @@ export class AuthGuard {
 
   async canLoad(route: Route, segments: UrlSegment[]) {
     await this.userSrv.loadUser();
-    if (!this.userSrv.getUser()) {
+    if (!this.userSrv.getUser() 
+        || this.userSrv.getUser()?.role !== 'nino') {
       await this.router.navigateByUrl('/auth');
       return false;
     }
