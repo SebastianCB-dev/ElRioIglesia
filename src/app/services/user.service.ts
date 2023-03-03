@@ -17,6 +17,10 @@ export class UserService {
     this._user = user;
   }
 
+  getUser() {
+    return this._user;
+  }
+
   async loadUser() {
     if(this._user)
       return;

@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<section id="profile-ninos">
+  <h3>Perfil</h3>
+  <article class="container-profile">
+    <h2>El Río Iglesia.</h2>
+    <hr>
+    <img src="../../../../assets/imgs/usuario.png">
+    <h4>{{ user.fullname }}</h4>
+    <p class="id">ID: {{ user.id }}</p>
+    <p class="points">{{ user.points }} Puntos</p>
+    <hr>
+    <div class="buttons">
+      <button class="actividades">Actividades</button>
+      <button class="editar">Editar Perfil</button>            
+    </div>
+    <hr>
+    <button class="logout"
+            routerLink="/auth/ninos/login">Cerrar sesión</button>
+  </article>
+</section>

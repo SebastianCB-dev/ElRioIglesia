@@ -5,6 +5,7 @@ export interface User {
   email: string;
   fullname: string;
   role: string;
+  id: number;
   fullname_acudiente?: string;
   points?: number;
   

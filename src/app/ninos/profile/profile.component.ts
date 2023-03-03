@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/interface/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
 
+  user: User;
+
+  constructor(private userSrv: UserService) {
+    this.user = this.userSrv.getUser()!;
+  }
 }
