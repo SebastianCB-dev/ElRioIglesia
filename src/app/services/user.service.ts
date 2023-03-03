@@ -25,9 +25,17 @@ export class UserService {
     if(this._user)
       return;
     const token = localStorage.getItem('token-rio') || '';
-    if(token) {
-      // TODO: Terminar
-      await this.fbSrv.getUser(token)
+    if(token) {      
+      const user = await this.fbSrv.getUser(token);
+      if(user) {
+        this._user = user as User;
+      }
     }
+    return;
+  }
+
+  logout() {
+    this._user = undefined;
+    localStorage.removeItem('token-rio');
   }
 }
