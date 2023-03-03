@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
+import { User } from 'src/app/interface/user';
 import { FirebaseService } from '../../../services/firebase.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +22,9 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
               private fbSrv: FirebaseService,
-              private messageService: MessageService) {}
+              private messageService: MessageService,
+              private router: Router,
+              private userSrv: UserService) {}
 
   isValidControl(control: string) {
     return this.loginForm.get(control)?.touched &&
@@ -56,7 +61,8 @@ export class LoginComponent {
       }
 
       localStorage.setItem('token-rio', JSON.stringify(user['id']));
-    // TODO: Redirect to dashboard
+      this.userSrv.setUser(user as User);
+      this.router.navigateByUrl('/ninos/profile')
     }
     catch (error) {
       console.log(error);
