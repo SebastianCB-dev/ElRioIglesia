@@ -35,7 +35,7 @@ export class RegisterComponent {
            this.registerForm.get(control)?.invalid;
   }
 
-  async register() {        
+  async register() {
     if(this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       return;
@@ -57,7 +57,6 @@ export class RegisterComponent {
       this.registerForm.value.id = id;
       this.registerForm.value.points = 0;
       const { terms, ...data} = this.registerForm.value;
-      data.dob = new Date(data.dob);
       // Create user
       await this.fbSrv.createUser({
         ...data
@@ -87,7 +86,7 @@ export class RegisterComponent {
     finally {
       this.isLoading = false;
     }
-    
+
   }
 
   getDateToday() {

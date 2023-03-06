@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Analytics, getAnalytics } from "firebase/analytics";
-import { addDoc, 
-         collection, 
-         doc, 
-         Firestore, 
-         getDoc, 
-         getDocs, 
-         getFirestore, 
-         query, 
+import { addDoc,
+         collection,
+         doc,
+         Firestore,
+         getDoc,
+         getDocs,
+         getFirestore,
+         query,
          setDoc,
          where} from 'firebase/firestore';
 import { User } from '../interface/user';
@@ -46,7 +46,7 @@ export class FirebaseService {
 
   createUser(user: User, role: string) {
     user.role = role;
-    return setDoc(doc(this.db, "users", user.documento.toString()), user);    
+    return setDoc(doc(this.db, "users", user.documento.toString()), user);
   }
 
   async getUser(documento: string) {
@@ -73,10 +73,9 @@ export class FirebaseService {
   async getUserByID(id: number) {
     const querySearch = query(collection(this.db, 'users'), where('id', '==', id));
     const querySnapshot = await getDocs(querySearch);
-    const user = querySnapshot.docs.map((doc) => {
-      const data = doc.data();
-      return data;
-    })
-    return user[0];
+    const user = querySnapshot.docs;
+    if(user.length === 0)
+      return null;
+    return user[0].data();
   }
 }

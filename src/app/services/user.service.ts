@@ -22,12 +22,11 @@ export class UserService {
   }
 
   async loadUser() {
-    console.log('Loading...');
     if(this._user)
       return;
     const token = localStorage.getItem('token-rio') || '';
-    
-    if(token) {      
+
+    if(token) {
       const user = await this.fbSrv.getUserByID(Number(token));
       console.log(user);
       if(user) {

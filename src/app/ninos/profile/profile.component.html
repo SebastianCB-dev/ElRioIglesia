@@ -2,10 +2,21 @@
   <h3>Perfil</h3>
   <article class="container-profile">
     <div class="header">
-      <a><i></i></a>
+      <a title="Cerrar sesión"
+         (click)="logout()"><i class="bi bi-arrow-left back"></i></a>
       <h2>El Río Iglesia.</h2>
-      <a><i class="bi bi-gear-fill"></i></a>
+      <a title="Configuración"><i class="bi bi-gear-fill settings"></i></a>
     </div>
     <hr>
+    <img src="../../../assets/imgs/usuario.png" alt="El Río Iglesia Logo">
+    <h4>{{ user.fullname }}</h4>
+    <h5>{{ user.email }}</h5>
+    <button type="button"
+            class="actividades">Actividades <i class="bi bi-arrow-right"></i></button>
+    <div class="info">
+      <p><span>Curso</span> {{ getCourse() }}</p>
+      <p><span>ID</span> {{ user.id }}</p>
+      <p><span>Puntos</span>  {{ user.points }}</p>
+    </div>
   </article>
 </section>
