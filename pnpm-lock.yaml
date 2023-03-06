@@ -13,6 +13,7 @@ specifiers:
   '@angular/platform-browser-dynamic': ^15.2.0
   '@angular/router': ^15.2.0
   '@types/jasmine': ~4.3.0
+  bootstrap-icons: ^1.10.3
   firebase: ^9.17.1
   jasmine-core: ~4.5.0
   karma: ~6.4.0
@@ -37,6 +38,7 @@ dependencies:
   '@angular/platform-browser': 15.2.0_soizqph2fnjracxavakx67hoyq
   '@angular/platform-browser-dynamic': 15.2.0_q3vtycdixm4mw4ocqkr6ifs2ty
   '@angular/router': 15.2.0_za6jdduxquwsf5arpf6dzdovcm
+  bootstrap-icons: 1.10.3
   firebase: 9.17.1
   primeicons: 6.0.1
   primeng: 15.2.0_de7g4wqtfsrtndcbdfwcldhtpi
@@ -3200,6 +3202,10 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
+
+  /bootstrap-icons/1.10.3:
+    resolution: {integrity: sha512-7Qvj0j0idEm/DdX9Q0CpxAnJYqBCFCiUI6qzSPYfERMcokVuV9Mdm/AJiVZI8+Gawe4h/l6zFcOzvV7oXCZArw==}
+    dev: false
 
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
