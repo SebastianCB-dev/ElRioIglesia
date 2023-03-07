@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
 
+
+  logout() {
+
+  }
+
+  searchUser(query: string, type: string) {
+    console.log({query, type});
+  }
 }
