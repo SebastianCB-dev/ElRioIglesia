@@ -88,6 +88,7 @@ export class FirebaseService {
     const user = querySnapshot.docs;
     if(user.length === 0)
       return null;
-    return user.filter((doc) => regexName.test((doc.data() as User).fullname));
+    return user.filter((doc) => regexName.test((doc.data() as User).fullname))
+            .map((doc) => doc.data());
   }
 }
