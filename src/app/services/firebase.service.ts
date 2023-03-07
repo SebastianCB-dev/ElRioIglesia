@@ -71,11 +71,23 @@ export class FirebaseService {
   }
 
   async getUserByID(id: number) {
-    const querySearch = query(collection(this.db, 'users'), where('id', '==', id));
+    const querySearch = query(collection(this.db, 'users'),
+                              where('id', '==', id));
     const querySnapshot = await getDocs(querySearch);
     const user = querySnapshot.docs;
     if(user.length === 0)
       return null;
     return user[0].data();
+  }
+
+  async getNinoByName(name: string) {
+    const regexName = new RegExp(name, 'i');
+    const querySearch = query(collection(this.db, 'users'),
+                              where('role', '==', 'nino'));
+    const querySnapshot = await getDocs(querySearch);
+    const user = querySnapshot.docs;
+    if(user.length === 0)
+      return null;
+    return user.filter((doc) => regexName.test((doc.data() as User).fullname));
   }
 }
