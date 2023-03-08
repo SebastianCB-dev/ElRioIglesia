@@ -21,6 +21,7 @@ export class DashboardComponent {
   }
 
   async searchUser(query: string, type: string) {
+    console.log('Cargando')
     if(query.length === 0) return;
     switch (type) {
       case 'ID':
@@ -28,7 +29,8 @@ export class DashboardComponent {
         break;
       case 'Nombre':
         const data = await this.firebaseSrv.getNinoByName(query);
-        console.log(data);
+        if(data)
+          this.usersSearch = data as User[];
         break;
       case 'Identificacion':
         console.log('Searching Identificación');

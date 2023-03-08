@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
+import { PrimengModule } from '../primeng/primeng.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
@@ -11,7 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    PrimengModule
   ]
 })
 export class AdminModule { }
