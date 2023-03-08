@@ -33,15 +33,14 @@
     <p-table [value]="usersSearch" 
              [tableStyle]="{'min-width': '50rem'}"
              id="table-results"
-             *ngIf="usersSearch.length > 0"
-             class=" table table-hover">
+             *ngIf="usersSearch.length > 0">
       <ng-template pTemplate="header">
         <tr>
           <th>ID</th>
           <th>Nombre</th>
           <th>Identificación</th>
           <th>Puntos</th>
-          <th>Acciones</th>
+          <th [style]="{'width': '230px'}">Acciones</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body"
@@ -52,7 +51,14 @@
           <td>{{ user.documento }}</td>
           <td>{{ user.points }}</td>
           <td>
-            EMPTY
+            <button class="action"
+                    title="Registrar Niño(a)">
+              <i class="bi bi-person-vcard-fill"></i> Registrar              
+            </button>
+            <button class="action"
+                    title="Editar Niño">
+              <i class="bi bi-pencil-square"></i> Editar
+            </button>
           </td>
         </tr>
       </ng-template>
