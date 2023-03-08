@@ -28,7 +28,6 @@ export class UserService {
 
     if(token) {
       const user = await this.fbSrv.getUserByID(Number(token));
-      console.log(user);
       if(user) {
         this._user = user as User;
       }
