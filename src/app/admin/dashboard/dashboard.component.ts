@@ -28,12 +28,14 @@ export class DashboardComponent {
         console.log('Searching ID');
         break;
       case 'Nombre':
-        const data = await this.firebaseSrv.getNinoByName(query);
-        if(data)
-          this.usersSearch = data as User[];
+        const usersByName = await this.firebaseSrv.getNinoByName(query);
+        if (usersByName)
+          this.usersSearch = usersByName as User[];
         break;
       case 'Identificacion':
-        console.log('Searching Identificación');
+        const usersByIdentificacion = await this.firebaseSrv.getNinoByDocument(query);
+        if (usersByIdentificacion)
+          this.usersSearch = usersByIdentificacion as User[];
         break;
     }
   }

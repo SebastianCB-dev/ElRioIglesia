@@ -91,4 +91,15 @@ export class FirebaseService {
     return user.filter((doc) => regexName.test((doc.data() as User).fullname))
             .map((doc) => doc.data());
   }
+
+  async getNinoByDocument(document: string) {
+    const querySearch = query(collection(this.db, 'users'),
+                              where('documento', '==', document));
+    const querySnapshot = await getDocs(querySearch);
+    const user = querySnapshot.docs;
+    if(user.length === 0)
+      return null;
+    return user.filter((doc) => (doc.data() as User).role === 'nino')
+            .map((doc) => doc.data());
+  }
 }
