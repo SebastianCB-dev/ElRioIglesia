@@ -80,13 +80,35 @@
          life="3000" 
          position="bottom-center"></p-toast>
 
-<p-dialog header="Editar Usuario" 
+<p-dialog id="update-user"
+          header="Editar Usuario" 
           [(visible)]="display"
           [draggable]="false"
           [resizable]="false"
           position="top"
           [blockScroll]="true"
           [closeOnEscape]="true"
-          [modal]="true">
-  Content
+          [modal]="true"
+          [dismissableMask]="true"
+          (onHide)="cancelUpdate()">
+  <span>ID: </span>
+  <!-- ID  -->
+  <input type="number"
+         [value]="userEditing?.id"
+         disabled>
+  <!-- Nombres  -->
+  <span>Nombres: </span>
+  <input type="text"
+         [value]="userEditing?.fullname">
+  <!-- Puntos: -->
+  <span>Puntos: </span>
+  <input type="number"
+         [value]="userEditing?.points">
+  <!-- Puntos: -->
+  <span>Identificación: </span>
+  <input type="number" 
+         [value]="userEditing?.documento">
+
+  <button class="update"
+          (click)="updateUser()">Actualizar</button>
 </p-dialog>

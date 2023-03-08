@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
+  userEditing: User | undefined;
   usersSearch: User[] = [];
   isLoading: boolean = false;
 
@@ -135,5 +136,16 @@ export class DashboardComponent {
 
   editUser(user: User) {
     this.display = true;
+    this.userEditing = user;
+  }
+
+  cancelUpdate() {
+    this.display = false;
+    this.userEditing = undefined;
+  }
+
+  updateUser() {
+    if(!this.userEditing) return;
+    console.log('Updating...');
   }
 }
