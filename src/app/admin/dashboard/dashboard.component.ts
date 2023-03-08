@@ -30,7 +30,19 @@ export class DashboardComponent {
     this.isLoading = true;
     switch (type) {
       case 'ID':
-        console.log('Searching ID');
+        const idNumber = parseInt(query);
+        if(!isNaN(idNumber)) {
+          const usersByID = await this.firebaseSrv.getNinoByID(idNumber);
+          if (usersByID && usersByID?.length > 0) {
+            this.usersSearch = usersByID as User[];
+            this.showMessageUsersLoaded();
+            this.isLoading = false;
+            return;
+          }
+        }
+        this.showMessageUsersNotFound();
+        this.usersSearch = [];
+        this.isLoading = false;
         break;
       case 'Nombre':
         const usersByName = await this.firebaseSrv.getNinoByName(query);

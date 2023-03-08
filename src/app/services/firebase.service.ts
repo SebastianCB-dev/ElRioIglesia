@@ -102,4 +102,15 @@ export class FirebaseService {
     return user.filter((doc) => (doc.data() as User).role === 'nino')
             .map((doc) => doc.data());
   }
+
+  async getNinoByID(id: number) {
+    const querySearch = query(collection(this.db, 'users'),
+      where('id', '==', id));
+    const querySnapshot = await getDocs(querySearch);
+    const user = querySnapshot.docs;
+    if (user.length === 0)
+      return null;
+    return user.filter((doc) => (doc.data() as User).role === 'nino')
+      .map((doc) => doc.data());
+  }
 }
