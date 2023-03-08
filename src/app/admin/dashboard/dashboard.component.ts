@@ -130,4 +130,10 @@ export class DashboardComponent {
     }
     return edad
   }
+
+  display: boolean = false;
+
+  editUser(user: User) {
+    this.display = true;
+  }
 }

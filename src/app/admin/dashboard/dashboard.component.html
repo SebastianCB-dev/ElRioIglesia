@@ -62,7 +62,8 @@
           <td>{{ user.points }}</td>
           <td>
             <button class="action"
-                    title="Editar Niño">
+                    title="Editar Niño"
+                    (click)="editUser(user)">
               <i class="bi bi-pencil-square"></i> Editar
             </button>
           </td>
@@ -78,3 +79,14 @@
          sticky="true" 
          life="3000" 
          position="bottom-center"></p-toast>
+
+<p-dialog header="Editar Usuario" 
+          [(visible)]="display"
+          [draggable]="false"
+          [resizable]="false"
+          position="top"
+          [blockScroll]="true"
+          [closeOnEscape]="true"
+          [modal]="true">
+  Content
+</p-dialog>
