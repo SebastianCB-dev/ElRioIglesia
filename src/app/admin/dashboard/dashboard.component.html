@@ -45,6 +45,8 @@
           <th>ID</th>
           <th>Nombre</th>
           <th>Identificación</th>
+          <th>Edad</th>
+          <th>Salón</th>
           <th>Puntos</th>
           <th [style]="{'width': '230px'}">Acciones</th>
         </tr>
@@ -55,6 +57,8 @@
           <td>{{ user.id }}</td>
           <td>{{ user.fullname }}</td>
           <td>{{ user.documento }}</td>
+          <td>{{ getEdad(user.dob) }}</td>
+          <td>{{ getSalon(user) }}</td>
           <td>{{ user.points }}</td>
           <td>
             <button class="action"

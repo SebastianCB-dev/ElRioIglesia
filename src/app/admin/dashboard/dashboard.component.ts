@@ -4,6 +4,8 @@ import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../services/firebase.service';
 
 import { User } from '../../interface/user';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,11 +20,14 @@ export class DashboardComponent {
 
   constructor(
     private firebaseSrv: FirebaseService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userSrv: UserService,
+    private router: Router
   ) { }
 
-  logout() {
-
+  async logout() {
+    this.userSrv.logout();
+    await this.router.navigateByUrl('/auth');
   }
 
   async searchUser(query: string, type: string) {    
@@ -85,5 +90,44 @@ export class DashboardComponent {
       summary: 'Busqueda',
       detail: 'No se encontraron registros.'
     });
+  }
+
+  getSalon(user: User) {
+    const edad: number = this.getEdad(user.dob);
+    if (edad < 3) {
+      return 'No aplicable';
+    }
+    if (edad >= 3 && edad <= 4) {
+      return 'Salon 3-4';
+    }
+    else if (edad >= 5 && edad <= 6) {
+      return 'Salon 5-6';
+    }
+    else if (edad >= 7 && edad <= 8) {
+      return 'Salon 7-8';
+    }
+    else if (edad >= 9 && edad <= 10) {
+      return 'Salon 9-10';
+    }
+    else if (edad >= 11 && edad <= 13) {
+      return 'Salon 11-13';
+    }
+    else {
+      return 'No aplicable';
+    }
+  }
+
+  getEdad(dob: string) {
+    let hoy = new Date()
+    let fechaNacimiento = new Date(dob)
+    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
+    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth()
+    if (
+      diferenciaMeses < 0 ||
+      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
+    ) {
+      edad--
+    }
+    return edad
   }
 }
