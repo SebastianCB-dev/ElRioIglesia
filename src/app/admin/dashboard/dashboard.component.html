@@ -48,7 +48,7 @@
           <th>Edad</th>
           <th>Salón</th>
           <th>Puntos</th>
-          <th [style]="{'width': '230px'}">Acciones</th>
+          <th [style]="{'width': '120px'}">Acciones</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body"
@@ -61,10 +61,6 @@
           <td>{{ getSalon(user) }}</td>
           <td>{{ user.points }}</td>
           <td>
-            <button class="action"
-                    title="Registrar Niño(a)">
-              <i class="bi bi-person-vcard-fill"></i> Registrar              
-            </button>
             <button class="action"
                     title="Editar Niño">
               <i class="bi bi-pencil-square"></i> Editar
