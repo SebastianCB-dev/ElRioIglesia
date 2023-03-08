@@ -66,4 +66,9 @@
   </article>
 </section>
 
-<app-loading></app-loading>
+<app-loading *ngIf="isLoading"></app-loading>
+
+<p-toast closable="true"
+         sticky="true" 
+         life="3000" 
+         position="bottom-center"></p-toast>
