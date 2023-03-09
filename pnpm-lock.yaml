@@ -14,6 +14,7 @@ specifiers:
   '@angular/router': ^15.2.0
   '@types/jasmine': ~4.3.0
   bootstrap-icons: ^1.10.3
+  crypto-js: ^4.1.1
   firebase: ^9.17.1
   jasmine-core: ~4.5.0
   karma: ~6.4.0
@@ -39,6 +40,7 @@ dependencies:
   '@angular/platform-browser-dynamic': 15.2.0_q3vtycdixm4mw4ocqkr6ifs2ty
   '@angular/router': 15.2.0_za6jdduxquwsf5arpf6dzdovcm
   bootstrap-icons: 1.10.3
+  crypto-js: 4.1.1
   firebase: 9.17.1
   primeicons: 6.0.1
   primeng: 15.2.0_de7g4wqtfsrtndcbdfwcldhtpi
@@ -3613,6 +3615,10 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /crypto-js/4.1.1:
+    resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
+    dev: false
 
   /css-loader/6.7.3_webpack@5.75.0:
     resolution: {integrity: sha512-qhOH1KlBMnZP8FzRO6YCH9UHXQhVMcEGLyNdb7Hv2cpcmJbW0YrddO+tG1ab5nT41KpHIYGsbeHqxB9xPu1pKQ==}

@@ -39,4 +39,8 @@ export class UserService {
     this._user = undefined;
     localStorage.removeItem('token-rio');
   }
+
+  cryptData(data: string) {
+    return 
+  }
 }
