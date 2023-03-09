@@ -59,8 +59,8 @@ export class LoginComponent {
         });
         return;
       }
-
-      localStorage.setItem('token-rio', JSON.stringify(user['id']));
+      const idCrypt = this.userSrv.cryptData(user['id'].toString());
+      localStorage.setItem('token-rio', idCrypt);
       this.userSrv.setUser(user as User);
       this.router.navigateByUrl('/ninos/profile')
     }
