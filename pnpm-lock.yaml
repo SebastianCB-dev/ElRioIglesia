@@ -12,6 +12,7 @@ specifiers:
   '@angular/platform-browser': ^15.2.0
   '@angular/platform-browser-dynamic': ^15.2.0
   '@angular/router': ^15.2.0
+  '@types/crypto-js': ^4.1.1
   '@types/jasmine': ~4.3.0
   bootstrap-icons: ^1.10.3
   crypto-js: ^4.1.1
@@ -53,6 +54,7 @@ devDependencies:
   '@angular-devkit/build-angular': 15.2.0_ht2jtrirovptwcqy4pi5q5aehm
   '@angular/cli': 15.2.0
   '@angular/compiler-cli': 15.2.0_m4al3dxpm6stx7f4nyyv5fszcu
+  '@types/crypto-js': 4.1.1
   '@types/jasmine': 4.3.1
   jasmine-core: 4.5.0
   karma: 6.4.1
@@ -2640,6 +2642,10 @@ packages:
     resolution: {integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==}
     dependencies:
       '@types/node': 18.14.2
+    dev: true
+
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
 
   /@types/eslint-scope/3.7.4:
