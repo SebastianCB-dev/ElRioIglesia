@@ -12,19 +12,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: AuthHomeComponent
+        component: AuthHomeComponent,
+        title: 'El Río Iglesia | Auth'
       },
       {
         path: 'ninos/login',
-        component: LoginComponent
+        component: LoginComponent,
+        title: 'El Río Iglesia | Niños Acceso'
       },
       {
         path: 'ninos/register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        title: 'El Río Iglesia | Niños Registro'
       },
       {
         path: 'admin-leaders/login',
-        component: LoginAdminLeaderComponent
+        component: LoginAdminLeaderComponent,
+        title: 'El Río Iglesia | Acceso Líderes y Administradores'
       }
     ]
   }

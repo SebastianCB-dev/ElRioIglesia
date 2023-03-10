@@ -8,7 +8,8 @@ const routes: Routes = [
     children: [
       {
         path: 'profile',
-        component: ProfileComponent,            
+        component: ProfileComponent, 
+        title: 'El Río Iglesia | Perfil'           
       }
     ]
   }

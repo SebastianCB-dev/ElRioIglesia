@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: HomePageComponent
+    component: HomePageComponent,
+    title: 'El Río Iglesia | Portal Niños'
   },
   {
     path: 'auth',
