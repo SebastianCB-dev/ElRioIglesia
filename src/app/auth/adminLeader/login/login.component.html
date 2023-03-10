@@ -14,7 +14,7 @@
            formControlName="documento" 
            required>
     <label class="label_documento" 
-           for="documento_login">Documento de identidad niño(a)*</label>
+           for="documento_login">Documento de identidad*</label>
     <span *ngIf="isValidControl('documento')" 
           class="error">El documento de identidad es requerido.</span>
     <!-- ID -->
@@ -24,7 +24,7 @@
            formControlName="id" 
            required>
     <label class="label_id" 
-           for="id_register">ID del niño(a)*</label>
+           for="id_register">ID*</label>
     <span *ngIf="isValidControl('id')" 
           class="error">El ID es requerido.</span>
     <button type="submit">Ingresar</button>    
