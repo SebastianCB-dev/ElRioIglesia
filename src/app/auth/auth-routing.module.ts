@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginAdminLeaderComponent } from './adminLeader/login/login.component';
 
 import { AuthHomeComponent } from './auth-home.component';
 import { LoginComponent } from './ninos/login/login.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'ninos/register',
         component: RegisterComponent
+      },
+      {
+        path: 'admin-leaders/login',
+        component: LoginAdminLeaderComponent
       }
     ]
   }

@@ -9,13 +9,15 @@ import { LoginComponent } from './ninos/login/login.component';
 import { RegisterComponent } from './ninos/register/register.component';
 import { PrimengModule } from '../primeng/primeng.module';
 import { ComponentsModule } from '../components/components.module';
+import { LoginAdminLeaderComponent } from './adminLeader/login/login.component';
 
 
 @NgModule({
   declarations: [
     AuthHomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginAdminLeaderComponent
   ],
   imports: [
     CommonModule,
