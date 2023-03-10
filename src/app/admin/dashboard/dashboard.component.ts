@@ -6,6 +6,7 @@ import { FirebaseService } from '../../services/firebase.service';
 import { User } from '../../interface/user';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,11 +20,18 @@ export class DashboardComponent {
   usersSearch: User[] = [];
   isLoading: boolean = false;
 
+  formUpdateUser = this.fb.group({
+    fullname: ['', Validators.required],
+    points: [0, Validators.required],
+    documento: [0, Validators.required]
+  });
+
   constructor(
     private firebaseSrv: FirebaseService,
     private messageService: MessageService,
     private userSrv: UserService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   async logout() {
@@ -136,6 +144,11 @@ export class DashboardComponent {
 
   editUser(user: User) {
     this.display = true;
+    this.formUpdateUser.patchValue({
+      fullname: user.fullname,
+      points: user.points,
+      documento: user.documento
+    });
     this.userEditing = user;
   }
 
@@ -146,6 +159,6 @@ export class DashboardComponent {
 
   updateUser() {
     if(!this.userEditing) return;
-    console.log('Updating...');
+    console.log(this.formUpdateUser.value);
   }
 }

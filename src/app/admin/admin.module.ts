@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ComponentsModule } from '../components/components.module';
 import { PrimengModule } from '../primeng/primeng.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     CommonModule,
     AdminRoutingModule,
     PrimengModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

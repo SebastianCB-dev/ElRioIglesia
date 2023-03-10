@@ -91,24 +91,26 @@
           [modal]="true"
           [dismissableMask]="true"
           (onHide)="cancelUpdate()">
-  <span>ID: </span>
-  <!-- ID  -->
-  <input type="number"
-         [value]="userEditing?.id"
-         disabled>
-  <!-- Nombres  -->
-  <span>Nombres: </span>
-  <input type="text"
-         [value]="userEditing?.fullname">
-  <!-- Puntos: -->
-  <span>Puntos: </span>
-  <input type="number"
-         [value]="userEditing?.points">
-  <!-- Puntos: -->
-  <span>Identificación: </span>
-  <input type="number" 
-         [value]="userEditing?.documento">
+  <form [formGroup]="formUpdateUser">
+    <span>ID: </span>
+    <!-- ID  -->
+    <input type="number"
+           [value]="userEditing?.id"
+           disabled>
+    <!-- Nombres  -->
+    <span>Nombres: </span>
+    <input type="text"
+          formControlName="fullname">
+    <!-- Puntos: -->
+    <span>Puntos: </span>
+    <input type="number"
+          formControlName="points">
+    <!-- Documento: -->
+    <span>Identificación: </span>
+    <input type="number" 
+          formControlName="documento">
 
-  <button class="update"
-          (click)="updateUser()">Actualizar</button>
+    <button class="update"
+            (click)="updateUser()">Actualizar</button>
+  </form>
 </p-dialog>
