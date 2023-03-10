@@ -51,7 +51,7 @@ export class LoginComponent {
         return;
       }
       // Validate if id is correct
-      if (user['id'] !== this.loginForm.get('id')?.value && user['role'] !== 'nino') {
+      if (user['id'] !== this.loginForm.get('id')?.value || user['role'] !== 'nino') {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

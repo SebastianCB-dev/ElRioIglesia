@@ -51,7 +51,7 @@ export class LoginAdminLeaderComponent {
         return;
       }
       // Validate if id is correct
-      if (user['id'] !== this.loginAdminLeader.get('id')?.value && user['role'] !== 'nino') {
+      if (user['id'] !== this.loginAdminLeader.get('id')?.value || user['role'] === 'nino') {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -62,7 +62,9 @@ export class LoginAdminLeaderComponent {
       const idCrypt = this.userSrv.cryptData(user['id'].toString());
       localStorage.setItem('token-rio', idCrypt);
       this.userSrv.setUser(user as User);
-      this.router.navigateByUrl('/ninos/profile')
+      if(user['role'] === 'admin') {
+        this.router.navigateByUrl('/admin/dashboard');
+      }      
     }
     catch (error) {
       console.log(error);
