@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 
 import { User } from '../../interface/user';
 
+import { getEdad, getSalon } from '../../helpers/ninos.helper';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,10 @@ import { User } from '../../interface/user';
 })
 export class DashboardComponent {
 
-  userEditing: User | undefined;
-  usersSearch: User[] = [];
-  isLoading: boolean = false;
+  public userEditing: User | undefined;
+  public usersSearch: User[] = [];
+  public isLoading: boolean = false;
+  public display: boolean = false;
 
   formUpdateUser = this.fb.group({
     fullname: ['', Validators.required],
@@ -37,6 +39,14 @@ export class DashboardComponent {
   async logout() {
     this.userSrv.logout();
     await this.router.navigateByUrl('/auth');
+  }
+
+  getSalon(user: User) {
+    return getSalon(user);
+  }
+
+  getEdad(dob: string) {
+    return getEdad(dob);
   }
 
   async searchUser(query: string, type: string) {    
@@ -101,50 +111,6 @@ export class DashboardComponent {
       detail: 'No se encontraron registros.'
     });
   }
-
-  getSalon(user: User) {
-    // TODO: Refactorizar Move to Helper
-    const edad: number = this.getEdad(user.dob);
-    if (edad < 3) {
-      return 'No aplicable';
-    }
-    if (edad >= 3 && edad <= 4) {
-      return 'Salon 3-4';
-    }
-    else if (edad >= 5 && edad <= 6) {
-      return 'Salon 5-6';
-    }
-    else if (edad >= 7 && edad <= 8) {
-      return 'Salon 7-8';
-    }
-    else if (edad >= 9 && edad <= 10) {
-      return 'Salon 9-10';
-    }
-    else if (edad >= 11 && edad <= 13) {
-      return 'Salon 11-13';
-    }
-    else {
-      return 'No aplicable';
-    }
-  }
-
-  getEdad(dob: string) {
-    // TODO Move to Helper
-    let hoy = new Date()
-    let fechaNacimiento = new Date(dob)
-    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
-    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth()
-    if (
-      diferenciaMeses < 0 ||
-      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
-    ) {
-      edad--
-    }
-    return edad
-  }
-
-  display: boolean = false;
-
   editUser(user: User) {
     this.display = true;
     this.formUpdateUser.patchValue({
