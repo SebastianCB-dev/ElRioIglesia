@@ -92,7 +92,7 @@ export class FirebaseService {
             .map((doc) => doc.data());
   }
 
-  async getNinoByDocument(document: string) {
+  async getNinoByDocument(document: number) {
     const querySearch = query(collection(this.db, 'users'),
                               where('documento', '==', document));
     const querySnapshot = await getDocs(querySearch);

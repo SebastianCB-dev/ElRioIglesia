@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { DocumentData } from 'firebase/firestore';
+
 import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../services/firebase.service';
 import { UserService } from 'src/app/services/user.service';
@@ -50,50 +52,28 @@ export class DashboardComponent {
   }
 
   async searchUser(query: string, type: string) {    
-    // TODO: Refactorizar
     if(query.length === 0) return;
     this.isLoading = true;
-    switch (type) {
-      case 'ID':
-        const idNumber = parseInt(query);
-        if(!isNaN(idNumber)) {
-          const usersByID = await this.firebaseSrv.getNinoByID(idNumber);
-          if (usersByID && usersByID?.length > 0) {
-            this.usersSearch = usersByID as User[];
-            this.showMessageUsersLoaded();
-            this.isLoading = false;
-            return;
-          }
-        }
-        this.showMessageUsersNotFound();
-        this.usersSearch = [];
-        this.isLoading = false;
-        break;
-      case 'Nombre':
-        const usersByName = await this.firebaseSrv.getNinoByName(query);
-        if (usersByName && usersByName?.length > 0) {
-          this.usersSearch = usersByName as User[];
-          this.showMessageUsersLoaded();
-          this.isLoading = false;
-          return;
-        }
-        this.showMessageUsersNotFound();
-        this.usersSearch = [];
-        this.isLoading = false;
-        break;
-      case 'Identificacion':
-        const usersByIdentificacion = await this.firebaseSrv.getNinoByDocument(query);
-        if (usersByIdentificacion && usersByIdentificacion?.length > 0) {
-          this.usersSearch = usersByIdentificacion as User[];
-          this.showMessageUsersLoaded();
-          this.isLoading = false;
-          return;
-        }
-        this.showMessageUsersNotFound();
-        this.usersSearch = [];
-        this.isLoading = false;
-        break;
+    let user: DocumentData[] | null = null;
+
+    if(type === 'ID' && !isNaN(parseInt(query))) {
+      user = await this.firebaseSrv.getNinoByID(parseInt(query));
     }
+    else if(type === 'Nombre') {
+      user = await this.firebaseSrv.getNinoByName(query);
+    }
+    else if (type === 'Identificacion' && !isNaN(parseInt(query))) {
+      user = await this.firebaseSrv.getNinoByDocument(parseInt(query));
+    }
+    if(user && user.length > 0) {
+      this.usersSearch = user as User[];
+      this.showMessageUsersLoaded();      
+    }
+    else {
+      this.usersSearch = [];
+      this.showMessageUsersNotFound();
+    }
+    this.isLoading = false;
   }
 
   showMessageUsersLoaded() {
