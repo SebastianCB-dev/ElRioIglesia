@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { User } from 'src/app/interface/user';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+
+import { getEdad, getSalon } from '../../helpers/ninos.helper';
 
 @Component({
   selector: 'app-profile',
@@ -22,42 +25,12 @@ export class ProfileComponent {
     await this.router.navigateByUrl('/auth/ninos/login');
   }
 
+  getEdad(dob: string) {
+    return getEdad(dob);
+  }
+  
   getCourse() {
-    const edad: number = this.getEdad(this.user.dob);
-    console.log(edad)
-    if (edad < 3) {
-      return 'No aplicable';
-    }
-    if(edad >=3 && edad <= 4) {
-      return 'Salon 3-4';
-    }
-    else if(edad >=5 && edad <= 6) {
-      return 'Salon 5-6';
-    }
-    else if(edad >=7 && edad <= 8) {
-      return 'Salon 7-8';
-    }
-    else if(edad >=9 && edad <= 10) {
-      return 'Salon 9-10';
-    }
-    else if(edad >=11 && edad <= 13) {
-      return 'Salon 11-13';
-    }
-    else {
-      return 'No aplicable';
-    }
+    return getSalon(this.user);
   }
-  getEdad(dateString: string) {
-    let hoy = new Date()
-    let fechaNacimiento = new Date(dateString)
-    let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
-    let diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth()
-    if (
-      diferenciaMeses < 0 ||
-      (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())
-    ) {
-      edad--
-    }
-    return edad
-  }
+
 }
