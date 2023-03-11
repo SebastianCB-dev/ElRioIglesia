@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MessageService } from 'primeng/api';
 import { FirebaseService } from '../../services/firebase.service';
+import { UserService } from 'src/app/services/user.service';
 
 import { User } from '../../interface/user';
-import { UserService } from 'src/app/services/user.service';
-import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -40,6 +40,7 @@ export class DashboardComponent {
   }
 
   async searchUser(query: string, type: string) {    
+    // TODO: Refactorizar
     if(query.length === 0) return;
     this.isLoading = true;
     switch (type) {
@@ -102,6 +103,7 @@ export class DashboardComponent {
   }
 
   getSalon(user: User) {
+    // TODO: Refactorizar Move to Helper
     const edad: number = this.getEdad(user.dob);
     if (edad < 3) {
       return 'No aplicable';
@@ -127,6 +129,7 @@ export class DashboardComponent {
   }
 
   getEdad(dob: string) {
+    // TODO Move to Helper
     let hoy = new Date()
     let fechaNacimiento = new Date(dob)
     let edad = hoy.getFullYear() - fechaNacimiento.getFullYear()
