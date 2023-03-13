@@ -116,6 +116,6 @@ export class FirebaseService {
   }
 
   async updateUser(props: Record<string, string>) {
-    return updateDoc(doc(this.db, "users", props['documento']), props);
+    return updateDoc(doc(this.db, "users", props['documento'].toString()), props);
   }
 }

@@ -26,8 +26,8 @@ export class DashboardComponent {
 
   formUpdateUser = this.fb.group({
     fullname: ['', Validators.required],
-    points: [0, Validators.required],
-    documento: [0, Validators.required]
+    points: [0, [Validators.required, Validators.min(0)]],
+    documento: [0, [Validators.required, Validators.min(1)]]
   });
 
   constructor(
@@ -91,6 +91,15 @@ export class DashboardComponent {
       detail: 'No se encontraron registros.'
     });
   }
+
+  showMessageError(msg: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: msg
+    });
+  }
+
   editUser(user: User) {
     this.display = true;
     this.formUpdateUser.patchValue({
@@ -98,7 +107,7 @@ export class DashboardComponent {
       points: user.points,
       documento: user.documento
     });
-    this.userEditing = user;
+    this.userEditing = user;    
   }
 
   cancelUpdate() {
@@ -107,7 +116,13 @@ export class DashboardComponent {
   }
 
   updateUser() {
-    if(!this.userEditing) return;
-    console.log(this.formUpdateUser.value);
+    if(!this.userEditing || this.formUpdateUser.invalid) {
+      this.showMessageError('Datos invalidos');
+      return;
+    }
+    // Validate document does not exist
+    
+    this.display = false;
   }
+
 }
