@@ -11,6 +11,7 @@ import { addDoc,
          getFirestore,
          query,
          setDoc,
+         updateDoc,
          where} from 'firebase/firestore';
 import { User } from '../interface/user';
 @Injectable({
@@ -112,5 +113,9 @@ export class FirebaseService {
       return null;
     return user.filter((doc) => (doc.data() as User).role === 'nino')
       .map((doc) => doc.data());
+  }
+
+  async updateUser(props: Record<string, string>) {
+    return updateDoc(doc(this.db, "users", props['documento']), props);
   }
 }
